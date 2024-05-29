@@ -1,0 +1,13 @@
+from python:3.11
+
+workdir /app
+
+COPY requirement.txt .
+
+run pip install --no-cache-dir -r requirement.txt
+
+COPY . .
+
+Expose 8000
+
+CMD python manage.py makemigrations && python manage.py migrate && python manage.py 0.0.0.0:8000
